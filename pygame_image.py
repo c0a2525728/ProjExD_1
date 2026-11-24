@@ -26,17 +26,20 @@ def main():
 
         key_lst = pg.key.get_pressed()  # 練習10-3：全キー状態の取得
 
-        # 演習1：背景と同じ速さで毎フレーム左へ1ピクセル流れる。
-        kk_rct.move_ip((-1, 0))
-
+        # 演習1：背景と同じ速さで毎フレーム左に1ピクセル流れる。
+        dx = -1
+        dy = 0
         if key_lst[pg.K_UP]:
-            kk_rct.move_ip((0, -1))
+            dy -= 1
         if key_lst[pg.K_DOWN]:
-            kk_rct.move_ip((0, 1))
+            dy += 1
         if key_lst[pg.K_LEFT]:
-            kk_rct.move_ip((-1, 0))
+            dx -= 1
         if key_lst[pg.K_RIGHT]:
-            kk_rct.move_ip((2, 0))  # -1 + 2 = +1 で右に進む。
+            dx += 2  # -1 + 2 = +1 で右に進む。
+
+        # 演習2：横と縦の移動量をまとめて反映する。
+        kk_rct.move_ip((dx, dy))
 
         x = tmr % 3200  # 練習5：背景の横座標に使う変数／練習9：ループ
         screen.blit(bg_img, (-x, 0))  # 練習2：背景画像の描画
